@@ -1,2 +1,2 @@
 # m2csmi
-Files the course
+Files for the course
