@@ -37,7 +37,7 @@ class modelePYTHON(OpenTURNSPythonFunction) :
 # Use that function defined in the script python
 # with the openturns library
 # Create a NumericalMathFunction from modelePYTHON
-deviation = NumericalMathFunction(modelePYTHON())
+deviation = Function(modelePYTHON())
 
 
 ###########################################
@@ -153,7 +153,7 @@ dim = deviation.getInputDimension()
 # On each direction separately, several levels are evaluated
 # here,  3 levels : +/-0.5, +/-1., +/-3. from the center
 levelsNumber = 3
-levels = NumericalPoint(levelsNumber, 0.0)
+levels = Point(levelsNumber, 0.0)
 levels[0] = 0.5
 levels[1] = 1.0
 levels[2] = 3.0
@@ -169,7 +169,7 @@ print(myDesign.generate())
 # to take into account the dimension of each component
 # for example : the standard deviation of each component of 'inputRandomVector'
 # in case of a RandomVector
-scaling = NumericalPoint(dim)
+scaling = Point(dim)
 scaling[0] = sqrt(inputRandomVector.getCovariance()[0,0])
 scaling[1] = sqrt(inputRandomVector.getCovariance()[1,1])
 scaling[2] = sqrt(inputRandomVector.getCovariance()[2,2])
@@ -245,7 +245,7 @@ print ("##############################")
 print ("")
 
 # We create a quadraticCumul algorithm
-myQuadraticCumul = QuadraticCumul(outputVariableOfInterest)
+myQuadraticCumul = TaylorExpansionMoments(outputVariableOfInterest)
 
 # We compute the several elements provided by the quadratic cumul algorithm
 # and evaluate the number of calculus needed
